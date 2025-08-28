@@ -10,17 +10,22 @@ import StepInput from "./components/StepInput";
 
 function App() {
     const [counterValue, setCounterValue] = useState(5);
+    const [stepValue, SetStepValue] = useState(1);
 
-    function changeCounterValue(prevCounterValue, type) {
+    function handleCounterBtnClick(prevCounterValue, type) {
         if (type === "increase") {
-            setCounterValue((prevCounterValue += 1));
+            setCounterValue((prevCounterValue) => (prevCounterValue = Number(prevCounterValue) + Number(stepValue)));
         } else if (type === "decrease") {
-            setCounterValue((prevCounterValue -= 1));
+            setCounterValue((prevCounterValue) => (prevCounterValue = Number(prevCounterValue) - Number(stepValue)));
         }
     }
 
-    function resetCounter() {
+    function handleResetBtnClick() {
         setCounterValue(5);
+    }
+
+    function handleStepChange(event) {
+        SetStepValue(event.target.value);
     }
 
     return (
@@ -37,17 +42,17 @@ function App() {
 
                             <div id="counterControls" className="counter-controls">
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <CounterBtn btnBg="danger" handleClick={() => changeCounterValue(counterValue, "decrease")}>
+                                    <CounterBtn btnBg="danger" handleClick={() => handleCounterBtnClick(counterValue, "decrease")}>
                                         <i className="fa-solid fa-circle-minus"></i>
                                     </CounterBtn>
-                                    <StepInput type="number" />
-                                    <CounterBtn btnBg="success" handleClick={() => changeCounterValue(counterValue, "increase")}>
+                                    <StepInput type="number" stepValue={stepValue} onStepChange={handleStepChange} />
+                                    <CounterBtn btnBg="success" handleClick={() => handleCounterBtnClick(counterValue, "increase")}>
                                         <i className="fa-solid fa-circle-plus"></i>
                                     </CounterBtn>
                                 </div>
 
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <button className="reset-btn rounded-4 fw-bold btn btn-warning px-5 py-2 my-3" onClick={resetCounter}>
+                                    <button className="reset-btn rounded-4 fw-bold btn btn-warning px-5 py-2 my-3" onClick={handleResetBtnClick}>
                                         Reset
                                     </button>
                                 </div>
