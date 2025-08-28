@@ -4,7 +4,7 @@ import "./App.css";
 import Container from "./components/Container/Container";
 import Row from "./components/Row";
 import Col from "./components/Col";
-import CounterBody from "./components/CounterBody";
+import CounterBody from "./components/CounterBody/CounterBody";
 import CounterBtn from "./components/CounterBtn/CounterBtn";
 import StepInput from "./components/StepInput";
 
@@ -34,7 +34,7 @@ function App() {
                 <Row rowProperties=" d-flex justify-content-center h-100">
                     <Col colProperties="-6 d-flex justify-content-center align-items-center">
                         <CounterBody title="Counter App">
-                            <div id="counterCont" className="counter-cont d-inline-block rounded-3 text-bg-secondary px-5 py-4 my-5">
+                            <div id="counterCont" className="counter-cont d-inline-block rounded-3 text-bg-primary px-5 py-4 my-5">
                                 <span id="counterDisplay" className="counter-display display-2 fw-bold">
                                     {counterValue}
                                 </span>
