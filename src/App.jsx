@@ -11,12 +11,12 @@ import StepInput from "./components/StepInput";
 function App() {
     const [counterValue, setCounterValue] = useState(5);
 
-    function decreaseCounter(prevCounterValue) {
-        setCounterValue((prevCounterValue -= 1));
-    }
-
-    function increaseCounter(prevCounterValue) {
-        setCounterValue((prevCounterValue += 1));
+    function changeCounterValue(prevCounterValue, type) {
+        if (type === "increase") {
+            setCounterValue((prevCounterValue += 1));
+        } else if (type === "decrease") {
+            setCounterValue((prevCounterValue -= 1));
+        }
     }
 
     function resetCounter() {
@@ -37,11 +37,11 @@ function App() {
 
                             <div id="counterControls" className="counter-controls">
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <CounterBtn btnBg="danger" handleClick={() => decreaseCounter(counterValue)}>
+                                    <CounterBtn btnBg="danger" handleClick={() => changeCounterValue(counterValue, "decrease")}>
                                         <i className="fa-solid fa-circle-minus"></i>
                                     </CounterBtn>
                                     <StepInput type="number" />
-                                    <CounterBtn btnBg="success" handleClick={() => increaseCounter(counterValue)}>
+                                    <CounterBtn btnBg="success" handleClick={() => changeCounterValue(counterValue, "increase")}>
                                         <i className="fa-solid fa-circle-plus"></i>
                                     </CounterBtn>
                                 </div>
