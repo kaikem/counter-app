@@ -1,0 +1,11 @@
+.counter-btn {
+    width: 40px;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    transition: all 0.2s ease-out;
+}
+
+.counter-btn:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
