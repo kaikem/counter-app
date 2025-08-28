@@ -9,6 +9,20 @@ import CounterBtn from "./components/CounterBtn/CounterBtn";
 import StepInput from "./components/StepInput";
 
 function App() {
+    const [counterValue, setCounterValue] = useState(5);
+
+    function decreaseCounter(prevCounterValue) {
+        setCounterValue((prevCounterValue -= 1));
+    }
+
+    function increaseCounter(prevCounterValue) {
+        setCounterValue((prevCounterValue += 1));
+    }
+
+    function resetCounter() {
+        setCounterValue(5);
+    }
+
     return (
         <>
             <Container>
@@ -17,22 +31,25 @@ function App() {
                         <CounterBody title="Counter App">
                             <div id="counterCont" className="counter-cont d-inline-block rounded-3 text-bg-secondary px-5 py-4 my-5">
                                 <span id="counterDisplay" className="counter-display display-2 fw-bold">
-                                    5
+                                    {counterValue}
                                 </span>
                             </div>
 
                             <div id="counterControls" className="counter-controls">
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <CounterBtn btnBg="danger">
+                                    <CounterBtn btnBg="danger" handleClick={() => decreaseCounter(counterValue)}>
                                         <i className="fa-solid fa-circle-minus"></i>
                                     </CounterBtn>
                                     <StepInput type="number" />
-                                    <CounterBtn btnBg="success">
+                                    <CounterBtn btnBg="success" handleClick={() => increaseCounter(counterValue)}>
                                         <i className="fa-solid fa-circle-plus"></i>
                                     </CounterBtn>
                                 </div>
+
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <button className="reset-btn rounded-4 fw-bold btn btn-warning px-5 py-2 my-3">Reset</button>
+                                    <button className="reset-btn rounded-4 fw-bold btn btn-warning px-5 py-2 my-3" onClick={resetCounter}>
+                                        Reset
+                                    </button>
                                 </div>
                             </div>
                         </CounterBody>
