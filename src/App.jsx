@@ -8,11 +8,18 @@ import CounterBody from "./components/CounterBody/CounterBody";
 import CounterBtn from "./components/CounterBtn/CounterBtn";
 import StepInput from "./components/StepInput";
 
-function App() {
-    const [counterValue, setCounterValue] = useState(5);
-    const [stepValue, SetStepValue] = useState(1);
+//-----------------------------------------------------------------
+//GENERAL VARIABLES
+const INITIAL_COUNTER = 5;
+const INITIAL_STEP = 1;
 
-    function handleCounterBtnClick(prevCounterValue, type) {
+//-----------------------------------------------------------------
+//COMPONENT
+function App() {
+    const [counterValue, setCounterValue] = useState(INITIAL_COUNTER);
+    const [stepValue, SetStepValue] = useState(INITIAL_STEP);
+
+    function handleCounterBtnClick(type) {
         if (type === "increase") {
             setCounterValue((prevCounterValue) => (prevCounterValue = Number(prevCounterValue) + Number(stepValue)));
         } else if (type === "decrease") {
@@ -21,7 +28,8 @@ function App() {
     }
 
     function handleResetBtnClick() {
-        setCounterValue(5);
+        setCounterValue(INITIAL_COUNTER);
+        SetStepValue(INITIAL_STEP);
     }
 
     function handleStepChange(event) {
@@ -42,11 +50,11 @@ function App() {
 
                             <div id="counterControls" className="counter-controls">
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <CounterBtn btnBg="danger" handleClick={() => handleCounterBtnClick(counterValue, "decrease")}>
+                                    <CounterBtn btnBg="danger" handleClick={() => handleCounterBtnClick("decrease")}>
                                         <i className="fa-solid fa-circle-minus"></i>
                                     </CounterBtn>
                                     <StepInput type="number" stepValue={stepValue} onStepChange={handleStepChange} />
-                                    <CounterBtn btnBg="success" handleClick={() => handleCounterBtnClick(counterValue, "increase")}>
+                                    <CounterBtn btnBg="success" handleClick={() => handleCounterBtnClick("increase")}>
                                         <i className="fa-solid fa-circle-plus"></i>
                                     </CounterBtn>
                                 </div>
